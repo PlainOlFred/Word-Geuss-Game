@@ -1,19 +1,27 @@
 document.addEventListener('DOMContentLoaded', function(){
     
     const wordBank = ['ALLEN', 'CAMERON', 'HITCHCOCK',"SCORESE", 'SPIELBERG','TARANTINO'];
+    let myWord = wordBank[Math.floor(Math.random()*wordBank.length)];
+    
+    
+    
+    let myArray=[];
+
+    for(let i =0; i<myWord.length ; i++){
+         myArray[i]='\_'
+     }
+     console.log(myArray)
 
     
     //variable
     let wins = 0;
     let loses = 0;
-    let guesses = 10;
+    let guesses = myWord.length;
 
     let lettersGuessed = [];
     let letterBank = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
-    
     let blank = '\_'; //to test wins
-   
-    let myWord = wordBank[Math.floor(Math.random()*wordBank.length)];
+    
 
     console.log('word to guess ' + myWord);
     
@@ -26,42 +34,16 @@ document.addEventListener('DOMContentLoaded', function(){
     let losesText = document.getElementById('loses');
    
 
-    //display score board
-    winsText.textContent = 'Wins: 0';
-    losesText.textContent = 'Loses: 0';
-    remainingGuess.textContent = 'Guesses Remaining: ' + guesses;
+    // //display score board
+    // winsText.textContent = 'Wins: 0';
+    // losesText.textContent = 'Loses: 0';
+    // remainingGuess.textContent = 'Guesses Remaining: ' + guesses;
 
-    function newWord(){
-        myWord = wordBank[Math.floor(Math.random()*wordBank.length)];
-    }
+    // function newWord(){
+    //     myWord = wordBank[Math.floor(Math.random()*wordBank.length)];
+    // }
 
-    //dis]play game board and current word
-    if (myWord === 'ALLEN'){
-        //turn word into a array
-        var myArray = ['\_', '\_', '\_', '\_', '\_'];
-        currentWord.textContent = myArray.join(' ');}
-    if (myWord === 'CAMERON'){
-        //turn word into a array
-        var myArray = ['\_', '\_', '\_', '\_', '\_','\_','\_'];
-        currentWord.textContent = myArray.join(' ');}
-    if (myWord === 'HITCHCOCK'){
-        //turn word into a array
-        var myArray = ['\_', '\_', '\_', '\_', '\_','\_','\_','\_','\_'];
-        currentWord.textContent = myArray.join(' ');}
-    if (myWord === 'SCORESE'){
-        //turn word into a array
-        var myArray = ['\_', '\_', '\_', '\_', '\_','\_','\_'];
-        currentWord.textContent = myArray.join(' ');}
-    if (myWord === 'SPIELBERG'){
-        //turn word into a array
-        var myArray = ['\_', '\_', '\_', '\_', '\_','\_','\_','\_','\_'];
-        currentWord.textContent = myArray.join(' ');}
-    if (myWord === 'TARANTINO'){
-        //turn word into a array
-        var myArray = ['\_', '\_', '\_', '\_', '\_', '\_', '\_', '\_', '\_'];
-        currentWord.textContent = myArray.join(' ');}
-    
-
+   
     
       //Event listener
     document.onkeyup = function (event){
@@ -180,9 +162,9 @@ document.addEventListener('DOMContentLoaded', function(){
                     } else if(userGuess === 'b'){
                         myArray[5] = 'B';   
                     } else if(userGuess === 'r'){
-                        myArray[6] = 'R';   
-                    } else if(userGuess === 'r'){
-                        myArray[7] = 'G';   
+                        myArray[7] = 'R';   
+                    } else if(userGuess === 'g'){
+                        myArray[8] = 'G';   
                     } 
                     else{
                         lettersGuessed.push(userGuess.toUpperCase());
@@ -223,57 +205,51 @@ document.addEventListener('DOMContentLoaded', function(){
             remainingGuess.textContent = 'Guesses Remaining: ' + guesses; 
             lettersUsedText.textContent = lettersGuessed.join(' ');
 
-            //Endgame
-            if(guesses === 0 && myArray.includes(blank)){
-                loses++;
-                newWord();
-                console.log('my word after losses' + myWord)
-            } 
+             //Endgame
+        if(guesses < 1 && myArray.includes(blank)){
+        loses++;
+        newWord();
+        console.log('you lose' + loses);
+        console.log('my word after losses' + myWord);
+        } 
 
-            //updates at endgam
-            winsText.textContent = 'Wins: ' + wins;
-            losesText.textContent = 'Loses: ' + loses;
+        if(!myArray.includes(blank)){
+            wins++;
+            newWord();
+            console.log('you win' + wins);
+            console.log('my word after win' + myWord);
+
+        }
+
+            
+           
             
 
 
              
             
-            // //endgame
-            // if(guesses<1 || !myArray.includes(blank)){
-            //     //check for loses
-            // if(guesses<1 && myArray.includes(blank)){
-            //     console.log('you lose');
-            //     //update game board
-            //     loses ++;
-            //     losesText.textContent = 'Loses: ' + loses;
-                
-            //     //restart game 
-            //     guesses = 10;
-            //     lettersGuessed = [];
-            //     letterBank = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
-            
-            //     //new random word
-            //     myWord = wordBank[Math.floor(Math.random()*wordBank.length)];
-            // } else
-            // //check for wins
-            // if(!myArray.includes(blank)){
-            //     console.log('you Win');
-            //     //update game board
-            //     wins ++;
-            //     winsText.textContent = 'Wins: ' + wins;
-                
-            //     //restart game 
-            //     guesses = 10;
-            //     lettersGuessed = [];
-            //     letterBank = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
-            
-            //     //remove correct work new random word
-            //     myWord = wordBank[Math.floor(Math.random()*wordBank.length)];
-            // };
-
-            // }
-
+        
 
     
     };
+
+   
+   
+
+
+    //  //updates at endgam
+    //  winsText.textContent = 'Wins: ' + wins;
+    //  losesText.textContent = 'Loses: ' + loses;
+
+
+
+
+
+
+
+
+
+
+
+
 });

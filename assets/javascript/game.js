@@ -3,14 +3,22 @@ document.addEventListener('DOMContentLoaded', function(){
     const wordBank = ['ALLEN', 'CAMERON', 'HITCHCOCK',"SCORESE", 'SPIELBERG','TARANTINO'];
     let myWord = wordBank[Math.floor(Math.random()*wordBank.length)];
     
+    //reference variables
+    let instructionText = document.getElementById('instructions-text');
+    let currentWord = document.getElementById('currentWord');
+    let remainingGuess =document.getElementById('remainingGuesses-text');
+    let lettersUsedText = document.getElementById('lettersUsed');
+    let winsText = document.getElementById('wins');
+    let losesText = document.getElementById('loses');
+    
     
     
     let myArray=[];
-
     for(let i =0; i<myWord.length ; i++){
          myArray[i]='\_'
      }
      console.log(myArray)
+     currentWord.textContent= myArray.join(' ')
 
     
     //variable
@@ -21,40 +29,41 @@ document.addEventListener('DOMContentLoaded', function(){
     let lettersGuessed = [];
     let letterBank = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
     let blank = '\_'; //to test wins
-    
 
-    console.log('word to guess ' + myWord);
     
-    //reference variables
-    let instructionText = document.getElementById('instructions-text');
-    let currentWord = document.getElementById('currentWord');
-    let remainingGuess =document.getElementById('remainingGuesses-text');
-    let lettersUsedText = document.getElementById('lettersUsed');
-    let winsText = document.getElementById('wins');
-    let losesText = document.getElementById('loses');
+    
    
 
-    // //display score board
-    // winsText.textContent = 'Wins: 0';
-    // losesText.textContent = 'Loses: 0';
-    // remainingGuess.textContent = 'Guesses Remaining: ' + guesses;
+    //display score board
+    winsText.textContent = 'Wins: 0';
+    losesText.textContent = 'Loses: 0';
+    remainingGuess.textContent = 'Guesses Remaining: ' + guesses;
 
-    // function newWord(){
-    //     myWord = wordBank[Math.floor(Math.random()*wordBank.length)];
-    // }
-
+    function newWord(){
+        myWord = wordBank[Math.floor(Math.random()*wordBank.length)];
+        guesses =myWord.length;
+        myArray = [];
+        lettersGuessed = [];
+        for(let i =0; i<myWord.length ; i++){
+            myArray[i]='\_'
+        }
+        instructionText.style.color= 'green';
+        instructionText.textContent = 'Press Enter for a New Word'
+        
+    }
+    
    
     
-      //Event listener
+    //Event listener
     document.onkeyup = function (event){
         instructionText.style.color= 'white';
+        
         let userGuess = event.key;
             //myWord is ALLEN
             if (myWord === 'ALLEN'){
                 if(letterBank.includes(userGuess)){
                     if(userGuess === 'a'){
                         myArray[0] = 'A';
-                        
                     } else if(userGuess === 'l'){
                         myArray[1] = 'L';
                         myArray[2] = 'L';  
@@ -205,21 +214,29 @@ document.addEventListener('DOMContentLoaded', function(){
             remainingGuess.textContent = 'Guesses Remaining: ' + guesses; 
             lettersUsedText.textContent = lettersGuessed.join(' ');
 
+
+
+
              //Endgame
-        if(guesses < 1 && myArray.includes(blank)){
-        loses++;
-        newWord();
-        console.log('you lose' + loses);
-        console.log('my word after losses' + myWord);
-        } 
+            if(guesses <1 && myArray.includes(blank)){
+                alert('You Lose')
+                loses++;
+                newWord();
+                console.log('you lose' + loses);
+                console.log('my word after losses' + myWord);
+                losesText.textContent = 'Loses: ' + loses;
+            } 
 
-        if(!myArray.includes(blank)){
-            wins++;
-            newWord();
-            console.log('you win' + wins);
-            console.log('my word after win' + myWord);
+            if(!myArray.includes(blank)){
+                alert('You Win')
+                wins++;
+                newWord();
+                console.log('you win' + wins);
+                console.log('my word after win' + myWord);
+                winsText.textContent = 'Wins: ' + wins;
 
-        }
+
+            }
 
             
            

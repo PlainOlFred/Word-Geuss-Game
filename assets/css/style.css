@@ -21,7 +21,8 @@
     text-align: center
 }
 
-#remainingGuesses-text{
+#remainingGuesses-text,
+#lettersUsed{
     
     font-size: 25pt;
 

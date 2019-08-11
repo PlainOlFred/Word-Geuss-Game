@@ -31,6 +31,10 @@ document.addEventListener('DOMContentLoaded', function(){
     losesText.textContent = 'Loses: 0';
     remainingGuess.textContent = 'Guesses Remaining: ' + guesses;
 
+    function newWord(){
+        myWord = wordBank[Math.floor(Math.random()*wordBank.length)];
+    }
+
     //dis]play game board and current word
     if (myWord === 'ALLEN'){
         //turn word into a array
@@ -61,6 +65,7 @@ document.addEventListener('DOMContentLoaded', function(){
     
       //Event listener
     document.onkeyup = function (event){
+        instructionText.style.color= 'white';
         let userGuess = event.key;
             //myWord is ALLEN
             if (myWord === 'ALLEN'){
@@ -76,7 +81,7 @@ document.addEventListener('DOMContentLoaded', function(){
                     } else if(userGuess === 'n'){
                         myArray[4] = 'N';   
                     }else{
-                        lettersGuessed.push(userGuess);
+                        lettersGuessed.push(userGuess.toUpperCase());
                         guesses--; //add if for if ! in letterguessed
                         letterBank.splice(letterBank.indexOf(userGuess),1);// removes letter from letterBank 
                     }
@@ -101,7 +106,7 @@ document.addEventListener('DOMContentLoaded', function(){
                         myArray[6] = 'N';   
                     } 
                     else{
-                        lettersGuessed.push(userGuess);
+                        lettersGuessed.push(userGuess.toUpperCase());
                         guesses--; //add if for if ! in letterguessed
                         letterBank.splice(letterBank.indexOf(userGuess),1);// removes letter from letterBank 
                     }
@@ -127,7 +132,7 @@ document.addEventListener('DOMContentLoaded', function(){
                         myArray[8] = 'K';   
                     } 
                     else{
-                        lettersGuessed.push(userGuess);
+                        lettersGuessed.push(userGuess.toUpperCase());
                         guesses--; //add if for if ! in letterguessed
                         letterBank.splice(letterBank.indexOf(userGuess),1);// removes letter from letterBank 
                     }
@@ -152,7 +157,7 @@ document.addEventListener('DOMContentLoaded', function(){
                           
                     } 
                     else{
-                        lettersGuessed.push(userGuess);
+                        lettersGuessed.push(userGuess.toUpperCase());
                         guesses--; //add if for if ! in letterguessed
                         letterBank.splice(letterBank.indexOf(userGuess),1);// removes letter from letterBank 
                     }
@@ -166,7 +171,7 @@ document.addEventListener('DOMContentLoaded', function(){
                     } else if(userGuess === 'p'){
                         myArray[1] = 'P'; 
                     } else if(userGuess === 'i'){
-                        myArray[2] = 'M';   
+                        myArray[2] = 'I';   
                     } else if(userGuess === 'e'){
                         myArray[3] = 'E'; 
                         myArray[6] = 'E';  
@@ -180,7 +185,7 @@ document.addEventListener('DOMContentLoaded', function(){
                         myArray[7] = 'G';   
                     } 
                     else{
-                        lettersGuessed.push(userGuess);
+                        lettersGuessed.push(userGuess.toUpperCase());
                         guesses--; //add if for if ! in letterguessed
                         letterBank.splice(letterBank.indexOf(userGuess),1);// removes letter from letterBank 
                     }
@@ -206,89 +211,67 @@ document.addEventListener('DOMContentLoaded', function(){
                         myArray[8] = 'O';   
                     } 
                     else{
-                        lettersGuessed.push(userGuess);
+                        lettersGuessed.push(userGuess.toUpperCase());
                         guesses--; //add if for if ! in letterguessed
                         letterBank.splice(letterBank.indexOf(userGuess),1);// removes letter from letterBank 
                     }
                 }
             };
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            
-            //endgame
-            if(guesses<1 || !myArray.includes(blank)){
-                //check for loses
-            if(guesses<1 && myArray.includes(blank)){
-                console.log('you lose');
-                //update game board
-                loses ++;
-                losesText.textContent = 'Loses: ' + loses;
-                
-                //restart game 
-                guesses = 10;
-                lettersGuessed = [];
-                letterBank = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
-            
-                //new random word
-                myWord = wordBank[Math.floor(Math.random()*wordBank.length)];
-            } else
-            //check for wins
-            if(!myArray.includes(blank)){
-                console.log('you Win');
-                //update game board
-                wins ++;
-                winsText.textContent = 'Wins: ' + wins;
-                
-                //restart game 
-                guesses = 10;
-                lettersGuessed = [];
-                letterBank = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
-            
-                //remove correct work new random word
-                myWord = wordBank[Math.floor(Math.random()*wordBank.length)];
-            };
-
-            }
-
+       
+            //update after every click
             currentWord.textContent = myArray.join(' ');
-            instructionText.style.color= 'white';
             remainingGuess.textContent = 'Guesses Remaining: ' + guesses; 
+            lettersUsedText.textContent = lettersGuessed.join(' ');
+
+            //Endgame
+            if(guesses === 0 && myArray.includes(blank)){
+                loses++;
+                newWord();
+                console.log('my word after losses' + myWord)
+            } 
+
+            //updates at endgam
             winsText.textContent = 'Wins: ' + wins;
             losesText.textContent = 'Loses: ' + loses;
-            lettersUsedText.textContent = lettersGuessed.join(' ');
-          
-
             
+
+
+             
             
-        
+            // //endgame
+            // if(guesses<1 || !myArray.includes(blank)){
+            //     //check for loses
+            // if(guesses<1 && myArray.includes(blank)){
+            //     console.log('you lose');
+            //     //update game board
+            //     loses ++;
+            //     losesText.textContent = 'Loses: ' + loses;
+                
+            //     //restart game 
+            //     guesses = 10;
+            //     lettersGuessed = [];
+            //     letterBank = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+            
+            //     //new random word
+            //     myWord = wordBank[Math.floor(Math.random()*wordBank.length)];
+            // } else
+            // //check for wins
+            // if(!myArray.includes(blank)){
+            //     console.log('you Win');
+            //     //update game board
+            //     wins ++;
+            //     winsText.textContent = 'Wins: ' + wins;
+                
+            //     //restart game 
+            //     guesses = 10;
+            //     lettersGuessed = [];
+            //     letterBank = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+            
+            //     //remove correct work new random word
+            //     myWord = wordBank[Math.floor(Math.random()*wordBank.length)];
+            // };
 
-
-    
-        
-    
-    
-    
-        
-    
-    
-    // endgame
-    // if (remainingGues = 0){
-    //     end game
-    // }
+            // }
 
 
     

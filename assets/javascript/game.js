@@ -47,8 +47,8 @@ document.addEventListener('DOMContentLoaded', function(){
         for(let i =0; i<myWord.length ; i++){
             myArray[i]='\_'
         }
-        instructionText.style.color= 'green';
-        instructionText.textContent = 'Press Enter for a New Word'
+        currentWord.textContent= myArray.join(' ');
+        lettersUsedText.textContent = lettersGuessed.join(' ');
         
     }
     
@@ -219,20 +219,14 @@ document.addEventListener('DOMContentLoaded', function(){
 
              //Endgame
             if(guesses <1 && myArray.includes(blank)){
-                alert('You Lose')
                 loses++;
                 newWord();
-                console.log('you lose' + loses);
-                console.log('my word after losses' + myWord);
                 losesText.textContent = 'Loses: ' + loses;
             } 
 
             if(!myArray.includes(blank)){
-                // alert('You Win')
                 wins++;
                 newWord();
-                console.log('you win' + wins);
-                console.log('my word after win' + myWord);
                 winsText.textContent = 'Wins: ' + wins;
 
 

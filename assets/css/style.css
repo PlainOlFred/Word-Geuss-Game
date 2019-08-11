@@ -23,7 +23,7 @@
 
 #remainingGuesses-text,
 #lettersUsed{
-    font-size: 25pt;
+    font-size: 18pt;
 }
 
 #currentWord{
@@ -33,5 +33,5 @@
 
 }
 #letters{
-    font-size: 25pt;
+    font-size: 18pt;
 }

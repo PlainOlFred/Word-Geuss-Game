@@ -228,7 +228,7 @@ document.addEventListener('DOMContentLoaded', function(){
             } 
 
             if(!myArray.includes(blank)){
-                alert('You Win')
+                // alert('You Win')
                 wins++;
                 newWord();
                 console.log('you win' + wins);

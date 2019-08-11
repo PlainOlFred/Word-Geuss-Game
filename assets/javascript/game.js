@@ -47,9 +47,10 @@ document.addEventListener('DOMContentLoaded', function(){
         for(let i =0; i<myWord.length ; i++){
             myArray[i]='\_'
         }
-        currentWord.textContent= myArray.join(' ');
+       
         lettersUsedText.textContent = lettersGuessed.join(' ');
-        
+        instructionText.style.color= 'green';
+        instructionText.textContent = 'Press Eneter for a New Word'
     }
     
    
@@ -220,12 +221,14 @@ document.addEventListener('DOMContentLoaded', function(){
              //Endgame
             if(guesses <1 && myArray.includes(blank)){
                 loses++;
+                currentWord.textContent= myArray.join(' ');
                 newWord();
                 losesText.textContent = 'Loses: ' + loses;
             } 
 
             if(!myArray.includes(blank)){
                 wins++;
+                currentWord.textContent= myArray.join(' ');
                 newWord();
                 winsText.textContent = 'Wins: ' + wins;
 

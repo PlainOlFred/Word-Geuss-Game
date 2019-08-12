@@ -221,7 +221,7 @@ document.addEventListener('DOMContentLoaded', function(){
              //Endgame
             if(guesses <1 && myArray.includes(blank)){
                 loses++;
-                currentWord.textContent= myArray.join(' ');
+                // currentWord.textContent= myArray.join(' ');
                 newWord();
                 losesText.textContent = 'Loses: ' + loses;
             } 

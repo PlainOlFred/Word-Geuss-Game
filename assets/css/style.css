@@ -1,37 +1,36 @@
-#score-board{
-    width: 90%;
-    margin: auto;
-    margin-bottom: 20px;
-    background-color: blueviolet;
-    border: 3px solid black;
-}
-
-#game-board{
-    width: 90%;
-    margin: auto;
-    background-color: blueviolet;
-    border: 3px solid black;
-}
-
-
-
-#instructions-text{
-    color: green;
-    font-size: 15pt;
-    text-align: center
-}
-
-#remainingGuesses-text,
-#lettersUsed{
+body {
+    background: skyblue;
     font-size: 18pt;
 }
+header {
+    padding: 30px;
+    background: linear-gradient(blueviolet, skyblue);
+    margin-bottom: 15px;
+    color: #555;
+}
+
+#score-board,
+#game-board {
+    width: 90%;
+    margin: auto;
+    padding: 15px;
+    margin-bottom: 20px;
+    background-color: skyblue;
+    color: blueviolet;
+    border: 3px solid black;
+}
+
 
 #currentWord{
     font-family: 'Courier New', Courier, monospace;
     font-size: 30pt;
+    color: #555;
     text-align: center;
-
+    
 }
+
+
 #letters{
     font-size: 18pt;
+    /* text-align: center; */
 }

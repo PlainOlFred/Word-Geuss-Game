@@ -14,28 +14,30 @@
         <h1>Director's Cut:  <small>Who shot it?</small></h1>
     </header>
     <div class="container">
-        <div class=row>
-            <div class="col-xs-12" id="score-board">
-                <h3>Score Board</h3>
-                <h5>Wins: <span id="wins">0</span></h5>
-                <h5>Loses: <span id="loses">0</span></h5>   
+        <div class="row">
+            <div class="col-xs-12 text-primary border border-primary rounded" id="score-board">
+                    <h3>Score Board</h3>
+                    <h5>Wins: <span id="wins">0</span></h5>
+                    <h5>Loses: <span id="loses">0</span></h5> 
             </div>
         </div>
         <div class="row">
             <div class="col-xs-12 col-md-8 offset-md-2">
-                <button id="hint-button" class="btn btn-block btn-outline-primary my-3">Get Hint</button>
+                <button type="button" class="btn btn-block btn-outline-primary my-3" data-toggle="modal" data-target="#hintModal">Get Hint</button>
+                <!-- <button id="hint-button" class="btn btn-block btn-outline-primary my-3">Get Hint</button> -->
             </div>
                <!-- Hint Modal  -->
+
         </div>
         <div class="row">
-            <div class="col-xs-12" id="game-board">
+            <div class="col-xs-12 text-primary border border-primary rounded" id="game-board">
                 <div class="row">
                     <div class="col mb-3">
-                        <div id="currentWord"></div>
+                        <div id="currentWord" class="text-primary"></div>
                     </div> 
                 </div>
                 <div class="row">
-                    <div class="col-xs-12 col-md-3">
+                    <div class="col-xs-12 col-md-3 ">
                         <p>Guesses: <span id="remainingGuesses-text"></span> </p>
                     </div>
                     <div class="col-xs-12 col-md-9">
@@ -45,13 +47,62 @@
             </div>
         </div>      
     </div>
-    
-    
-    
 
-   
+<!-- Answer Modal -->
+    <div class="modal fade" id="answerModal" tabindex="-1" role="dialog" aria-labelledby="answerModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="answerModalLabel"></h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="container-fulid">
+                <div class="row">
+                    <div class="col-xs-12 mx-auto mb-4  ">
+                        <div id="answer-modal-text"></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 mx-auto">
+                        <img id="answer-modal-image" height="200px" width="150px"/>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal">Next Director</button>
+        </div>
+        </div>
+    </div>
+    </div>
 
- 
+    <!-- Hint Modal -->
+    <div class="modal fade" id="hintModal" tabindex="-1" role="dialog" aria-labelledby="hintModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="hintModalLabel">You need Help?</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div id="hint-modal-text" class="modal-body">
+            Hint Displays Here
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal">I Got it</button>
+        </div>
+        </div>
+    </div>
+    </div>
+    
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="assets/javascript/game.js"></script>
 </body>
 </html>

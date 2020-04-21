@@ -11,27 +11,27 @@ document.addEventListener("DOMContentLoaded", function () {
   const game = {
     wordBank: {
       allen: {
-        hint: "Allen hint",
+        hint: "Real first name is Heywood",
         poster: "https://via.placeholder.com/150x200",
       },
       cameron: {
-        hint: "cameron hint",
+        hint: "Deep Sea Diver",
         poster: "https://via.placeholder.com/150x200",
       },
       hitchcock: {
-        hint: "hitchcock hint",
+        hint: "Black and White Horror",
         poster: "https://via.placeholder.com/150x200",
       },
       scorese: {
-        hint: "scorese hint",
+        hint: "Embraces Italian-American Heritage",
         poster: "https://via.placeholder.com/150x200",
       },
       spielberg: {
-        hint: "spielberg hint",
+        hint: "duunnn dunnn... duuuunnnn duun... duuunnnnnnnn dun ",
         poster: "https://via.placeholder.com/150x200",
       },
       tarantino: {
-        hint: "tarantino hint",
+        hint: "(90's non-linear director)",
         poster: "https://via.placeholder.com/150x200",
       },
     },
@@ -59,6 +59,8 @@ document.addEventListener("DOMContentLoaded", function () {
       this.startingGuesses = this.currentWordLetters.length - 3;
       this.remainingGuesses = this.startingGuesses;
       remainingGuess.textContent = this.remainingGuesses;
+
+      document.getElementById('hint-modal-text').textContent = this.wordBank[this.currentWordText].hint
     },
 
     // Game update after letter guess

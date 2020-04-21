@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
     winsText = document.getElementById("wins");
     losesText = document.getElementById("loses");
     // modals
+    answerModalLabel = document.getElementById('answerModalLabel')
     answerModalText = document.getElementById('answer-modal-text')
     answerModalImage = document.getElementById('answer-modal-image');
 
@@ -40,7 +41,7 @@ document.addEventListener("DOMContentLoaded", function () {
       },
       tarantino: {
         text: 'TARANTINO',
-        hint: "(90's non-linear director)",
+        hint: "90's non-linear director",
         poster: "https://via.placeholder.com/150x200",
       },
     },
@@ -78,8 +79,8 @@ document.addEventListener("DOMContentLoaded", function () {
         // show answer
         this.loses++;
         losesText.textContent = this.loses;
-
-        answerModalText.textContent = `Correct Answer: ${this.wordBank[this.currentWord].text}`
+        answerModalLabel.textContent = 'You Lose';
+        answerModalText.textContent = `Correct Answer: ${this.wordBank[this.currentWord].text}`;
         $('#answerModal').modal();
         this.restart();
       } else {
@@ -151,6 +152,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       if (didWin) {
         this.wins++;
+        answerModalLabel.textContent = 'You Win';
         answerModalText.textContent = `Correct Answer: ${this.wordBank[this.currentWord].text}`
         answerModalImage.setAttribute('src',this.wordBank[this.currentWord].poster )
         $('#answerModal').modal();

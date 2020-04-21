@@ -1,36 +1,45 @@
 document.addEventListener("DOMContentLoaded", function () {
   //Global and reference variables
-  let currentWord = document.getElementById("currentWord"),
+  const currentWord = document.getElementById("currentWord"),
     instructionText = document.getElementById("instructions-text"),
     remainingGuess = document.getElementById("remainingGuesses-text"),
     lettersUsedText = document.getElementById("lettersUsed"),
     winsText = document.getElementById("wins");
-  losesText = document.getElementById("loses");
+    losesText = document.getElementById("loses");
+    // modals
+    answerModalText = document.getElementById('answer-modal-text')
+    answerModalImage = document.getElementById('answer-modal-image');
 
   //Game object
   const game = {
     wordBank: {
       allen: {
+        text: 'ALLEN',
         hint: "Real first name is Heywood",
         poster: "https://via.placeholder.com/150x200",
       },
       cameron: {
+        text: 'CAMERON',
         hint: "Deep Sea Diver",
         poster: "https://via.placeholder.com/150x200",
       },
       hitchcock: {
+        text: 'HITCHCOCK',
         hint: "Black and White Horror",
         poster: "https://via.placeholder.com/150x200",
       },
       scorese: {
+        text: 'SCOESE',
         hint: "Embraces Italian-American Heritage",
         poster: "https://via.placeholder.com/150x200",
       },
       spielberg: {
+        text: 'SPIELBERG',
         hint: "duunnn dunnn... duuuunnnn duun... duuunnnnnnnn dun ",
         poster: "https://via.placeholder.com/150x200",
       },
       tarantino: {
+        text: 'TARANTINO',
         hint: "(90's non-linear director)",
         poster: "https://via.placeholder.com/150x200",
       },
@@ -40,7 +49,7 @@ document.addEventListener("DOMContentLoaded", function () {
     loses: 0,
     startingGuesses: 0,
     remainingGuesses: 0,
-    currentWordText: null,
+    currentWord: null,
     currentWordLetters: [],
     currentWordLettersGuessed: [],
     currentWordLettersUsed: [],
@@ -49,10 +58,10 @@ document.addEventListener("DOMContentLoaded", function () {
     setUp: function () {
       const myWords = Object.keys(this.wordBank);
 
-      this.currentWordText =
+      this.currentWord =
         myWords[Math.floor(Math.random() * myWords.length)];
 
-      this.currentWordLetters = this.currentWordText.split("");
+      this.currentWordLetters = this.currentWord.split("");
 
       this.renderGameLetters();
 
@@ -60,7 +69,7 @@ document.addEventListener("DOMContentLoaded", function () {
       this.remainingGuesses = this.startingGuesses;
       remainingGuess.textContent = this.remainingGuesses;
 
-      document.getElementById('hint-modal-text').textContent = this.wordBank[this.currentWordText].hint
+      document.getElementById('hint-modal-text').textContent = this.wordBank[this.currentWord].hint
     },
 
     // Game update after letter guess
@@ -68,7 +77,10 @@ document.addEventListener("DOMContentLoaded", function () {
       if (this.remainingGuesses === 1) {
         // show answer
         this.loses++;
-        losesText.innerHTML = this.loses;
+        losesText.textContent = this.loses;
+
+        answerModalText.textContent = `Correct Answer: ${this.wordBank[this.currentWord].text}`
+        $('#answerModal').modal();
         this.restart();
       } else {
         // incorrect guess
@@ -92,8 +104,8 @@ document.addEventListener("DOMContentLoaded", function () {
         this.currentWordLettersUsed.push(guess);
 
         this.remainingGuesses--;
-        remainingGuess.innerHTML = this.remainingGuesses;
-        lettersUsedText.innerHTML = this.currentWordLettersUsed.join(", ");
+        remainingGuess.textContent = this.remainingGuesses;
+        lettersUsedText.textContent = this.currentWordLettersUsed.join(", ");
       }
     },
 
@@ -122,7 +134,7 @@ document.addEventListener("DOMContentLoaded", function () {
           gameLetters += "_ ";
         }
       }
-      currentWord.innerHTML = gameLetters;
+      currentWord.textContent = gameLetters;
     },
 
     checkWin: function () {
@@ -139,7 +151,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
       if (didWin) {
         this.wins++;
-        winsText.innerHTML = this.wins;
+        answerModalText.textContent = `Correct Answer: ${this.wordBank[this.currentWord].text}`
+        answerModalImage.setAttribute('src',this.wordBank[this.currentWord].poster )
+        $('#answerModal').modal();
+
+        winsText.textContent = this.wins;
         return didWin;
       }
 

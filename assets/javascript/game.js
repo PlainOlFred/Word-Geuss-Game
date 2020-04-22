@@ -17,32 +17,32 @@ document.addEventListener("DOMContentLoaded", function () {
       allen: {
         text: 'ALLEN',
         hint: "Real first name is Heywood",
-        poster: "https://via.placeholder.com/150x200",
+        poster: "./assets/images/allen.jpeg",
       },
       cameron: {
         text: 'CAMERON',
         hint: "Deep Sea Diver",
-        poster: "https://via.placeholder.com/150x200",
+        poster: "./assets/images/cameron.jpeg",
       },
       hitchcock: {
         text: 'HITCHCOCK',
         hint: "Black and White Horror",
-        poster: "https://via.placeholder.com/150x200",
+        poster: "./assets/images/hitchcock.jpeg",
       },
       scorese: {
-        text: 'SCOESE',
+        text: 'SCORSESE',
         hint: "Embraces Italian-American Heritage",
-        poster: "https://via.placeholder.com/150x200",
+        poster: "./assets/images/scorsese.jpeg",
       },
       spielberg: {
         text: 'SPIELBERG',
         hint: "duunnn dunnn... duuuunnnn duun... duuunnnnnnnn dun ",
-        poster: "https://via.placeholder.com/150x200",
+        poster: "./assets/images/spielberg.jpeg",
       },
       tarantino: {
         text: 'TARANTINO',
         hint: "90's non-linear director",
-        poster: "https://via.placeholder.com/150x200",
+        poster: "./assets/images/tarantino.jpeg",
       },
     },
 
